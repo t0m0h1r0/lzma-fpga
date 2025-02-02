@@ -1,0 +1,28 @@
+[package]
+name = "lzma2-fpga-driver"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "LZMA2 FPGA Compression Driver"
+license = "MIT"
+
+[dependencies]
+thiserror = "1.0"
+tracing = "0.1"
+pcie = { version = "0.1", optional = true }
+num-derive = "0.4"
+num-traits = "0.2"
+
+[dev-dependencies]
+criterion = "0.4"
+proptest = "1.2"
+
+[features]
+default = ["pcie"]
+full = ["pcie"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
